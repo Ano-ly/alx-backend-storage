@@ -5,4 +5,8 @@
 def update_topics(mongo_collection, name, topics):
     """Add/ update topics in document"""
 
-    mongo_collection.update({"name": name}, {"$set": {"topics": topics}})
+    mongo_collection.update_many(
+        {"name": name},
+        {"$set": {"topics": topics}},
+        upsert=True
+    )
