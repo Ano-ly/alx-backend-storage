@@ -10,5 +10,4 @@ def schools_by_topic(mongo_collection, topic):
     for doc in res:
         if topic in doc.get("topics", []):
             fil_res.append(doc)
-        print(doc)
     return (fil_res)
