@@ -2,12 +2,13 @@
 """Function that finds a document in a collection"""
 
 
-def update_topics(mongo_collection, name, topics):
+def schools_by_topic(mongo_collection, topic):
     """Find a document in a collection"""
 
     res = mongo_collection.find()
     fil_res = []
     for doc in res:
-        if topics in doc.topics:
+        if topic in doc.get("topics", []):
             fil_res.append(doc)
+        print(doc)
     return (fil_res)
