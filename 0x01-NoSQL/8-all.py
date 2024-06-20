@@ -7,4 +7,4 @@ def list_all(mongo_collection):
     ret_list = []
     for doc in mongo_collection.find():
         ret_list.append(dict(doc))
-    return (doc)
+    return (ret_list)
