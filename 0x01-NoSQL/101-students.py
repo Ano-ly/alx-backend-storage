@@ -8,6 +8,9 @@ def top_students(mongo_collection):
     for doc in mongo_collection.find():
         scores = [item["score"] for item in doc["topics"]]
         avg_score = sum(scores)/len(scores)
-        doc["averageScore"] = avg_score
-    ret = mongo_collection.find().sort({"averageScore: -1"})
-    return (ret)
+        mongo_collection.update_one(
+            {"_id": doc["_id"]},
+            {"$set": {"averageScore": avg_score}}
+        )
+    ret = mongo_collection.aggregate([{"$sort": {"averageScore": -1}}])
+    return (list(ret))
