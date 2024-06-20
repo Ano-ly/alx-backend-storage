@@ -6,5 +6,5 @@ def list_all(mongo_collection):
     """List all documents in a collection"""
     ret_list = []
     for doc in mongo_collection.find():
-        ret_list.append(eval(doc))
+        ret_list.append(dict(doc))
     return (doc)
