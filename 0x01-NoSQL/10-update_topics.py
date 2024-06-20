@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Function that creates a dcocument with key-value pairs"""
+"""Function that updates a document"""
 
 
 def update_topics(mongo_collection, name, topics):
