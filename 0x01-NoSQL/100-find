@@ -1,0 +1,2 @@
+// Delete many documents using filter
+db.school.find({"name" : /^Holberton.*$/})
