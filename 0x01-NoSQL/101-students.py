@@ -2,9 +2,12 @@
 """Use pymongo to work with MongoDB database"""
 
 
-def list_all(mongo_collection):
-    """List all documents in a collection"""
-    ret_list = []
+def top_students(mongo_collection):
+    """Return students sorted by average score"""
+
     for doc in mongo_collection.find():
-        ret_list.append(dict(doc))
-    return (ret_list)
+        scores = [item["score"] for item in doc["topics"]]
+        avg_score = sum(scores)/len(scores)
+        doc["averageScore"] = avg_score
+    ret = mongo_collection.find().sort({"averageScore: -1"})
+    return (ret)
