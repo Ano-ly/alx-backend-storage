@@ -11,11 +11,11 @@ class Cache:
         """Initialise the class"""
 
         self._redis = redis.Redis()
-	self._redis.flushdb()
+        self._redis.flushdb()
 
     def store(self, data: (str | int | bytes | float)):
         """Store a key-value pair in the Redis server"""
 
-        keyy = uuid.uuid1()
-	self._redis.set(key, data)
-	return (key)
+        keyy = str(uuid.uuid1())
+        self._redis.set(keyy, data)
+        return (keyy)
