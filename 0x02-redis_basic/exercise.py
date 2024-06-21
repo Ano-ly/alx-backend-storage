@@ -3,6 +3,7 @@
 import redis
 import uuid
 from redis import Redis
+from typing import Union
 
 
 class Cache:
@@ -14,9 +15,9 @@ class Cache:
         self._redis: Redis = redis.Redis()
         self._redis.flushdb()
 
-    def store(self, data: (str | int | bytes | float)) -> str:
+    def store(self, data: Union[str, int, bytes, float]) -> str:
         """Store a key-value pair in the Redis server"""
 
-        keyy: str = str(uuid.uuid1())
+        keyy: str = str(uuid.uuid4())
         self._redis.set(keyy, data)
         return (keyy)
